@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baccarat Elite - Элитный баккарат</title>
+    <title>Pepe NFT Baccarat</title>
     <style>
         * {
             margin: 0;
@@ -12,40 +12,41 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
-            color: white;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
             min-height: 100vh;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 100%;
+            padding: 15px;
+            margin-bottom: 80px; /* Для нижнего меню */
         }
 
+        /* Хедер */
         .header {
             text-align: center;
-            padding: 40px 0;
+            padding: 20px 0;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         .logo {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            margin-bottom: 10px;
             animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 8px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -53,25 +54,111 @@
 
         .subtitle {
             color: #ccc;
+            font-size: 1rem;
+        }
+
+        /* NFT Галерея */
+        .nft-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .nft-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nft-card:hover {
+            transform: translateY(-3px);
+            border-color: #667eea;
+        }
+
+        .nft-image {
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .nft-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .nft-price {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            z-index: 1000;
+        }
+
+        .menu-item {
+            text-align: center;
+            flex: 1;
+            padding: 8px 5px;
+            font-size: 0.7rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item.active {
+            opacity: 1;
+            color: #667eea;
+        }
+
+        .menu-icon {
             font-size: 1.2rem;
-            margin-bottom: 30px;
+            margin-bottom: 4px;
+            display: block;
         }
 
         /* Игровой стол */
         .game-table {
-            background: rgba(0, 0, 0, 0.7);
-            border: 3px solid #d4af37;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0;
-            position: relative;
-            min-height: 400px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid #d4af37;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
         }
 
         .cards-container {
             display: flex;
             justify-content: space-around;
-            margin: 40px 0;
+            margin: 20px 0;
         }
 
         .player-area, .banker-area {
@@ -79,102 +166,97 @@
         }
 
         .area-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
             color: #d4af37;
         }
 
         .cards {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-bottom: 20px;
-            min-height: 120px;
+            margin-bottom: 15px;
+            min-height: 80px;
         }
 
         .card {
-            width: 80px;
-            height: 120px;
+            width: 50px;
+            height: 70px;
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.2rem;
             color: black;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .card.red {
             color: #d40000;
         }
 
+        /* Область ставок */
         .betting-area {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 30px 0;
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .bet-option {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 25px;
-            border-radius: 15px;
+            padding: 15px 10px;
+            border-radius: 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
 
-        .bet-option:hover {
-            transform: translateY(-5px);
-            border-color: #fff;
-        }
-
         .bet-option.active {
             border-color: #d4af37;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
 
         .bet-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
         }
 
         .bet-odds {
-            font-size: 1.1rem;
+            font-size: 0.8rem;
             color: #d4af37;
-            font-weight: bold;
         }
 
-        /* Баланс и управление */
+        /* Баланс */
         .balance-section {
             background: rgba(255,255,255,0.1);
             border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
+            padding: 20px;
+            margin: 15px 0;
             text-align: center;
         }
 
         .balance-amount {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #d4af37;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
+        /* Фишки */
         .bet-controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 10px;
+            margin: 15px 0;
             flex-wrap: wrap;
         }
 
         .chip {
-            width: 60px;
-            height: 60px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -182,16 +264,13 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 3px solid transparent;
-        }
-
-        .chip:hover {
-            transform: scale(1.1);
+            border: 2px solid transparent;
+            font-size: 0.8rem;
         }
 
         .chip.active {
             border-color: #fff;
-            box-shadow: 0 0 15px rgba(255,255,255,0.5);
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
         .chip-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
@@ -199,21 +278,25 @@
         .chip-25 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
         .chip-100 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
 
+        /* Кнопки */
         .game-buttons {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             justify-content: center;
-            margin: 30px 0;
+            margin: 20px 0;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 15px 30px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
         }
 
         .btn-primary {
@@ -231,71 +314,148 @@
             color: white;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        /* Пакеты Stars */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .package-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .package-card:hover {
+            transform: translateY(-3px);
+            border-color: #fff;
+        }
+
+        .package-emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .package-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .package-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 8px 0;
         }
 
         /* Уведомления */
         .notification {
             position: fixed;
             top: 20px;
-            right: 20px;
+            right: 15px;
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
-            padding: 20px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
             transform: translateX(400px);
             transition: transform 0.3s ease;
             z-index: 1000;
+            max-width: 300px;
         }
 
         .notification.show {
             transform: translateX(0);
         }
 
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .betting-area {
-                grid-template-columns: 1fr;
-            }
-            
-            .cards-container {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
+        /* Анимации для NFT */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.8); }
+        }
+
+        .animated-nft {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .spinning-nft {
+            animation: spin 4s linear infinite;
+        }
+
+        .glowing-nft {
+            animation: glow 2s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Хедер -->
         <div class="header">
-            <div class="logo">🎰</div>
-            <h1>Baccarat Elite</h1>
-            <div class="subtitle">Элитный баккарат с Telegram Stars</div>
+            <div class="logo">🐸</div>
+            <h1>Pepe NFT Baccarat</h1>
+            <div class="subtitle">Элитная игра с анимированными NFT</div>
+        </div>
+
+        <!-- Баланс -->
+        <div class="balance-section">
+            <div>Ваш баланс</div>
+            <div class="balance-amount" id="balance">1000</div>
+            <div>Stars</div>
+        </div>
+
+        <!-- NFT Галерея -->
+        <h2 style="text-align: center; margin: 20px 0;">🎨 Коллекция Pepe NFT</h2>
+        <div class="nft-gallery">
+            <div class="nft-card">
+                <div class="nft-image animated-nft">🐸</div>
+                <div class="nft-name">Pepe Diamond</div>
+                <div class="nft-price">★250</div>
+            </div>
+            <div class="nft-card">
+                <div class="nft-image spinning-nft">🌟</div>
+                <div class="nft-name">Pepe Gold</div>
+                <div class="nft-price">★500</div>
+            </div>
+            <div class="nft-card">
+                <div class="nft-image glowing-nft">💎</div>
+                <div class="nft-name">Pepe Crystal</div>
+                <div class="nft-price">★1000</div>
+            </div>
+            <div class="nft-card">
+                <div class="nft-image animated-nft">🔥</div>
+                <div class="nft-name">Pepe Fire</div>
+                <div class="nft-price">★750</div>
+            </div>
         </div>
 
         <!-- Игровой стол -->
         <div class="game-table">
             <div class="cards-container">
                 <div class="player-area">
-                    <div class="area-title">Игрок</div>
-                    <div class="cards" id="playerCards">
-                        <!-- Карты игрока -->
-                    </div>
+                    <div class="area-title">Игрок 🐸</div>
+                    <div class="cards" id="playerCards"></div>
                     <div class="score" id="playerScore">Очки: 0</div>
                 </div>
                 
                 <div class="banker-area">
-                    <div class="area-title">Банкир</div>
-                    <div class="cards" id="bankerCards">
-                        <!-- Карты банкира -->
-                    </div>
+                    <div class="area-title">Банкиr 💎</div>
+                    <div class="cards" id="bankerCards"></div>
                     <div class="score" id="bankerScore">Очки: 0</div>
                 </div>
             </div>
@@ -303,30 +463,23 @@
             <!-- Область ставок -->
             <div class="betting-area">
                 <div class="bet-option" data-bet="player">
-                    <div class="bet-title">Игрок</div>
+                    <div class="bet-title">Игрок 🐸</div>
                     <div class="bet-odds">Выплата 1:1</div>
                     <div class="bet-amount" id="playerBet">0</div>
                 </div>
                 
                 <div class="bet-option" data-bet="tie">
-                    <div class="bet-title">Ничья</div>
+                    <div class="bet-title">Ничья 🤝</div>
                     <div class="bet-odds">Выплата 8:1</div>
                     <div class="bet-amount" id="tieBet">0</div>
                 </div>
                 
                 <div class="bet-option" data-bet="banker">
-                    <div class="bet-title">Банкир</div>
+                    <div class="bet-title">Банкир 💎</div>
                     <div class="bet-odds">Выплата 0.95:1</div>
                     <div class="bet-amount" id="bankerBet">0</div>
                 </div>
             </div>
-        </div>
-
-        <!-- Баланс и управление -->
-        <div class="balance-section">
-            <div>Ваш баланс</div>
-            <div class="balance-amount" id="balance">1000</div>
-            <div>Stars</div>
         </div>
 
         <!-- Фишки для ставок -->
@@ -337,49 +490,68 @@
             <div class="chip chip-100" data-value="100">100</div>
         </div>
 
-        <!-- Кнопки управления -->
+        <!-- Кнопки управления игрой -->
         <div class="game-buttons">
-            <button class="btn btn-primary" id="dealBtn">Раздать карты</button>
-            <button class="btn btn-success" id="clearBtn">Очистить ставки</button>
-            <button class="btn btn-danger" id="resetBtn">Новая игра</button>
+            <button class="btn btn-primary" id="dealBtn">🎲 Раздать карты</button>
+            <button class="btn btn-success" id="clearBtn">🔄 Очистить ставки</button>
+            <button class="btn btn-danger" id="resetBtn">🆕 Новая игра</button>
         </div>
 
-        <!-- Кнопка пополнения -->
-        <div style="text-align: center; margin: 30px 0;">
-            <button class="btn btn-primary" onclick="showPaymentModal()">
-                💎 Пополнить через Telegram Stars
-            </button>
+        <!-- Пакеты Stars -->
+        <h2 style="text-align: center; margin: 25px 0 15px 0;">💎 Пополнение Stars</h2>
+        <div class="packages-grid">
+            <div class="package-card" onclick="initiatePayment(1)">
+                <div class="package-emoji">✨</div>
+                <div class="package-title">Стартовый пакет</div>
+                <div class="package-price">1 Star</div>
+                <div style="font-size: 0.8rem; opacity: 0.9;">Базовый набор</div>
+            </div>
+            
+            <div class="package-card" onclick="initiatePayment(50)">
+                <div class="package-emoji">🎯</div>
+                <div class="package-title">Игровой набор</div>
+                <div class="package-price">50 Stars</div>
+                <div style="font-size: 0.8rem; opacity: 0.9;">Для частых игр</div>
+            </div>
+            
+            <div class="package-card" onclick="initiatePayment(100)">
+                <div class="package-emoji">💎</div>
+                <div class="package-title">Профи пакет</div>
+                <div class="package-price">100 Stars</div>
+                <div style="font-size: 0.8rem; opacity: 0.9;">Серьезные ставки</div>
+            </div>
+            
+            <div class="package-card" onclick="initiatePayment(500)">
+                <div class="package-emoji">🏆</div>
+                <div class="package-title">Премиум пакет</div>
+                <div class="package-price">500 Stars</div>
+                <div style="font-size: 0.8rem; opacity: 0.9;">Элитный статус</div>
+            </div>
         </div>
     </div>
+
+    <!-- Мобильное меню -->
+    <nav class="mobile-menu">
+        <div class="menu-item active" onclick="switchTab('game')">
+            <span class="menu-icon">🎰</span>
+            <div>Игра</div>
+        </div>
+        <div class="menu-item" onclick="switchTab('nft')">
+            <span class="menu-icon">🐸</span>
+            <div>NFT</div>
+        </div>
+        <div class="menu-item" onclick="switchTab('shop')">
+            <span class="menu-icon">💎</span>
+            <div>Магазин</div>
+        </div>
+        <div class="menu-item" onclick="switchTab('profile')">
+            <span class="menu-icon">👤</span>
+            <div>Профиль</div>
+        </div>
+    </nav>
 
     <!-- Уведомление -->
     <div class="notification" id="notification"></div>
-
-    <!-- Модальное окно оплаты -->
-    <div id="paymentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 40px; border-radius: 20px; text-align: center; max-width: 500px; width: 90%;">
-            <h2 style="margin-bottom: 20px;">Пополнение баланса</h2>
-            <div class="packages-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 30px 0;">
-                <div class="package-card" onclick="addStars(50)" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 15px; cursor: pointer;">
-                    <div style="font-size: 2rem;">✨</div>
-                    <div>50 Stars</div>
-                </div>
-                <div class="package-card" onclick="addStars(100)" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; border-radius: 15px; cursor: pointer;">
-                    <div style="font-size: 2rem;">💎</div>
-                    <div>100 Stars</div>
-                </div>
-                <div class="package-card" onclick="addStars(500)" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 20px; border-radius: 15px; cursor: pointer;">
-                    <div style="font-size: 2rem;">🎯</div>
-                    <div>500 Stars</div>
-                </div>
-                <div class="package-card" onclick="addStars(1000)" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); padding: 20px; border-radius: 15px; cursor: pointer;">
-                    <div style="font-size: 2rem;">🏆</div>
-                    <div>1000 Stars</div>
-                </div>
-            </div>
-            <button class="btn btn-danger" onclick="hidePaymentModal()" style="margin-top: 20px;">Закрыть</button>
-        </div>
-    </div>
 
     <script>
         // Игровая логика
@@ -388,7 +560,7 @@
                 this.balance = 1000;
                 this.currentBet = { player: 0, tie: 0, banker: 0 };
                 this.currentChip = 1;
-                this.gameState = 'betting'; // betting, dealing, results
+                this.gameState = 'betting';
                 this.init();
             }
 
@@ -421,27 +593,24 @@
                 document.getElementById('dealBtn').addEventListener('click', () => this.dealCards());
                 document.getElementById('clearBtn').addEventListener('click', () => this.clearBets());
                 document.getElementById('resetBtn').addEventListener('click', () => this.resetGame());
-
-                // Активируем первую фишку
-                document.querySelector('.chip').classList.add('active');
             }
 
             placeBet(type, amount) {
                 const totalBet = this.currentBet.player + this.currentBet.tie + this.currentBet.banker + amount;
                 
                 if (totalBet > this.balance) {
-                    this.showNotification('Недостаточно средств!');
+                    this.showNotification('❌ Недостаточно Stars!');
                     return;
                 }
 
                 this.currentBet[type] += amount;
                 this.balance -= amount;
                 this.updateDisplay();
-                this.showNotification(`Ставка ${amount} на ${this.getBetName(type)}`);
+                this.showNotification(`✅ Ставка ${amount} Stars на ${this.getBetName(type)}`);
             }
 
             getBetName(type) {
-                const names = { player: 'Игрок', tie: 'Ничья', banker: 'Банкир' };
+                const names = { player: 'Игрок 🐸', tie: 'Ничья 🤝', banker: 'Банкир 💎' };
                 return names[type];
             }
 
@@ -451,13 +620,13 @@
                     this.currentBet[key] = 0;
                 });
                 this.updateDisplay();
-                this.showNotification('Ставки очищены');
+                this.showNotification('🔄 Ставки очищены');
             }
 
             dealCards() {
                 const totalBet = this.currentBet.player + this.currentBet.tie + this.currentBet.banker;
                 if (totalBet === 0) {
-                    this.showNotification('Сделайте ставку!');
+                    this.showNotification('⚠️ Сначала сделайте ставку!');
                     return;
                 }
 
@@ -519,11 +688,11 @@
                 const random = Math.random();
                 let winner;
 
-                if (random < 0.44) { // 44% - Банкир (комиссия 5%)
+                if (random < 0.44) {
                     winner = 'banker';
-                } else if (random < 0.88) { // 44% - Игрок
+                } else if (random < 0.88) {
                     winner = 'player';
-                } else { // 12% - Ничья
+                } else {
                     winner = 'tie';
                 }
 
@@ -533,9 +702,9 @@
                 if (winner === 'player') {
                     winAmount = this.currentBet.player * 2;
                 } else if (winner === 'banker') {
-                    winAmount = this.currentBet.banker * 1.95; // Комиссия 5%
+                    winAmount = this.currentBet.banker * 1.95;
                 } else if (winner === 'tie') {
-                    winAmount = this.currentBet.tie * 9; // 8 к 1 + ставка
+                    winAmount = this.currentBet.tie * 9;
                 }
 
                 // Обновление баланса
@@ -547,13 +716,13 @@
 
             showResults(winner, winAmount) {
                 const messages = {
-                    player: 'Игрок побеждает!',
-                    banker: 'Банкир побеждает!',
-                    tie: 'Ничья!'
+                    player: '🎉 Игрок побеждает! 🐸',
+                    banker: '🏦 Банкир побеждает! 💎',
+                    tie: '🤝 Ничья!'
                 };
 
                 if (winAmount > 0) {
-                    this.showNotification(`${messages[winner]} Вы выиграли ${winAmount} Stars!`);
+                    this.showNotification(`${messages[winner]} Выигрыш: ${winAmount} Stars!`);
                 } else {
                     this.showNotification(`${messages[winner]} Попробуйте еще раз!`);
                 }
@@ -570,6 +739,7 @@
                 document.getElementById('bankerScore').textContent = 'Очки: 0';
                 document.getElementById('dealBtn').disabled = false;
                 this.updateDisplay();
+                this.showNotification('🆕 Новая игра начата!');
             }
 
             updateDisplay() {
@@ -601,32 +771,65 @@
             addStars(amount) {
                 this.balance += amount;
                 this.updateDisplay();
-                this.showNotification(`Баланс пополнен на ${amount} Stars!`);
-                this.hidePaymentModal();
+                this.showNotification(`💎 Баланс пополнен на ${amount} Stars!`);
             }
         }
 
-        // Функции для модального окна
-        function showPaymentModal() {
-            document.getElementById('paymentModal').style.display = 'flex';
+        // Функции для мобильного меню
+        function switchTab(tabName) {
+            // Обновляем активный пункт меню
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Здесь можно добавить логику переключения вкладок
+            game.showNotification(`Переключено на: ${tabName}`);
         }
 
-        function hidePaymentModal() {
-            document.getElementById('paymentModal').style.display = 'none';
-        }
-
-        function addStars(amount) {
-            game.addStars(amount);
+        // Функция для оплаты через Telegram Stars
+        function initiatePayment(amount) {
+            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
+                // Для Telegram Mini App
+                Telegram.WebApp.openInvoice({
+                    product: {
+                        id: `stars_${amount}`,
+                        title: `Пакет ${amount} Stars`,
+                        description: `Пополнение баланса на ${amount} Telegram Stars`,
+                        prices: [
+                            { label: `${amount} Telegram Stars`, amount: amount * 100 }
+                        ]
+                    },
+                    currency: 'XTR'
+                }, function(status) {
+                    if (status === 'paid') {
+                        game.addStars(amount);
+                    }
+                });
+            } else {
+                // Для обычного браузера - демо-режим
+                game.addStars(amount);
+                game.showNotification(`💳 Демо-платеж: ${amount} Stars добавлены!`);
+            }
         }
 
         // Запуск игры
         const game = new BaccaratGame();
 
-        // Для интеграции с Telegram
-        if (window.Telegram && Telegram.WebApp) {
+        // Интеграция с Telegram
+        if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
             Telegram.WebApp.ready();
             Telegram.WebApp.expand();
+            
+            // Получаем данные пользователя
+            const user = Telegram.WebApp.initDataUnsafe?.user;
+            if (user) {
+                game.showNotification(`👋 Добро пожаловать, ${user.first_name || 'игрок'}!`);
+            }
         }
+
+        // Активируем первую фишку
+        document.querySelector('.chip').classList.add('active');
     </script>
 </body>
 </html>
